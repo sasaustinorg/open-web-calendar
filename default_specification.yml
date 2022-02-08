@@ -10,12 +10,12 @@
 ## url can be a single link to an ics file or a list.
 #url: https://your.link.to/a-file.ics
 url:
-- https://www.calendarlabs.com/ical-calendar/ics/46/Germany_Holidays.ics
+- https://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics
 #- https://www.calendarlabs.com/ical-calendar/ics/46/Germany_Holidays.ics
 #- https://www.calendarlabs.com/ical-calendar/ics/46/Germany_Holidays.ics
 
 ## The title is displayed as the title of the html page.
-title: "Open Web Calendar"
+title: "St. Andrew's Web Calendar"
 
 ## The language of the calendar. You can choose from these languages:
 ## Arabic: "ar"

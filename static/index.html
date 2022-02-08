@@ -1,40 +1,42 @@
 <!doctype html>
 <html>
     <head>
-        <title>Open Web Calendar</title>
+        <title>St. Andrew's Web Calendar</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/index.css"
             rel="stylesheet" type="text/css" charset="utf-8">
+        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+        <link rel="shortcut icon" href="img/favicon.ico">
         <script src="js/index.js"></script>
         <script src="configuration.js"></script>
     </head>
     <body>
         <header>
-            <h1>St. Andrew's Web Calendar</h1>
+            <img src="/img/SA-Seal-White.png" style="max-height: 100px; margin-bottom: -1rem;">
+            <h1>St. Andrew's Web Calendar Tool</h1>
         </header>
         <main>
             <div class="section">
                 <p>
-                    This tool is a self-hosted version of <a href="https://github.com/niccokunzmann/open-web-calendar">github.com/niccokunzmann/open-web-calendar</a>
+                    This tool is a self-hosted <a href="https://github.com/sasaustinorg/open-web-calendar">fork</a> of <a href="https://github.com/niccokunzmann/open-web-calendar">niccokunzmann/open-web-calendar</a>
                 </p>
             </div>
             <div class="section">
                 <p>
-                    The Open Web Calendar uses ICS/ICal calendars
-                    online and displays them in one calendar.
+                    If you have found your way here by accident, please use the public demo version of this open source software found here: <a href="https://openwebcalendar.herokuapp.com/">https://openwebcalendar.herokuapp.com/</a>
                 </p>
             </div>
             <div class="section">
                 <p>
-                    To merge several calendars, please input the the
-                    URLs of the ICS calendars here:
+                    Paste your ICS link(s) here:
                 </p>
                 <ul id="calendar-urls">
                 </ul>
                 <p>
                     <a id="calendar-link"></a>
-                    <br/>
-                    To embed the calendar, use this code on your website:
+                    <br/><br/>
+                    To embed the calendar, here is some iframe code, customizeable by the input boxes below the calendar preview.
                     <pre id="calendar-code" class="code"></pre>
                     You can view the resulting calendar below.
                     <div id="calendar-code-execution"></div>
@@ -162,7 +164,7 @@
                     <input type="checkbox" class="controls" value="date"    /><label for="date"    >Date</label>
                   </form>
                 </p>
-                <h3 id="specification">Hosting the Specification</h3>
+                <!-- <h3 id="specification">Hosting the Specification</h3>
                 <p>
                     The calendar can be generated not only using the url but
                     also through a JSON or YAML specification which resides in a file.
@@ -177,14 +179,15 @@
                     Once you have placed the specification somewhere online,
                     you can create a link like this one
                     <a id="example-specification-link" target="_blank"></a>.
-                </p>
+                </p> -->
+                <hr>
+                <p>Thank you to GitHub user <a href="https://github.com/niccokunzmann">@niccokunzmann</a> for sharing their code.</p>
             </div>
         </main>
         <footer>
             The open web calendar is open-source.
             You can contribute and view the source code on
-            <a href="https://github.com/niccokunzmann/open-web-calendar"
-               >GitHub</a>.
+            <a href="https://github.com/niccokunzmann/open-web-calendar">GitHub</a>.
         </footer>
     </body>
 </html>
