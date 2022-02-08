@@ -168,6 +168,11 @@ for folder_name in os.listdir(STATIC_FOLDER_PATH):
 def serve_index():
     return send_from_directory("static", "index.html")
 
+@app.route('/robots.txt')
+@app.route('/sitemap.xml')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
+
 @app.route("/about.html")
 def serve_about():
     specification = get_specification()

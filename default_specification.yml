@@ -83,7 +83,7 @@ tabs:
 - "month"
 - "week"
 - "day"
-#- agenda
+- agenda
 
 ## Users can control the calendar.
 ## You can hide these buttons:
