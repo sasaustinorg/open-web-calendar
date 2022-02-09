@@ -42,7 +42,19 @@ var OSM_URL = "https://www.openstreetmap.org/search?query=";
  * target according to the specification.
  */
 function makeLink(url, html) {
-  return "<a target='" + specification.target + "' href='" + escapeHtml(url) + "'>" + html + "</a>";
+  return "<a target='" + specification.target + "' href=\"" + escapeHtml(url) + "\">" + html + "</a>";
+}
+
+function getZoomLink(event){
+    // console.log(event);
+    mySearchString = "sasaustin.zoom.us/my/trustees";
+    myURL = "https://sasaustin.zoom.us/my/trustees";
+    if(event.description.search(mySearchString) !== -1) { //returns -1 if no match is found.
+        event.url = myURL;
+        return myURL;
+    }
+    else return 0;
+    
 }
 
 var template = {
@@ -71,6 +83,14 @@ var template = {
         return "<pre class='debug' style='display:none'>" +
             JSON.stringify(event, null, 2) +
             "</pre>"
+    },
+    "zoom": function(event) {
+        zoomLink = getZoomLink(event);
+        if(zoomLink !== 0){
+            return "<br><a href=\"" + zoomLink + "\"><button class=\"zoombutton\"><img src=\"img/zoom.png\"></button></a>";
+        }
+        else return "";
+        
     }
 }
 
@@ -133,6 +153,7 @@ function setLoader() {
 
 function loadCalendar() {
     setLocale(scheduler);
+    // scheduler.locale.labels.icon_custom = "Connect to Zoom";
     // set format of dates in the data source
     scheduler.config.xml_date="%Y-%m-%d %H:%i";
     // use UTC, see https://docs.dhtmlx.com/scheduler/api__scheduler_server_utc_config.html
@@ -140,6 +161,8 @@ function loadCalendar() {
     scheduler.config.readonly = true;
     scheduler.config.start_on_monday = false;
     scheduler.config.hour_date = "%g:%i%a";
+    scheduler.config.icons_select = []; //remove icons https://docs.dhtmlx.com/scheduler/api__scheduler_icons_select_config.html
+    scheduler.config.icons_edit = [];
     scheduler.init('scheduler_here', new Date(), specification["tab"]);
 
     // event in the calendar
@@ -148,11 +171,19 @@ function loadCalendar() {
     }
     // tool tip
     // see https://docs.dhtmlx.com/scheduler/tooltips.html
-    scheduler.templates.tooltip_text = function(start, end, event) {
+/*    scheduler.templates.tooltip_text = function(start, end, event) {
+        mySearchString = "sasaustin.zoom.us/my/trustees";
+        myURL = "https://sasaustin.zoom.us/my/trustees";
+        if(event.description.search(mySearchString) !== -1) { //returns -1 if no match is found.
+            event.url = myURL;
+        }
+        
+        // console.log(event.url);
+
         return template.summary(event) + template.details(event) + template.location(event);
     };
-    dhtmlXTooltip.config.delta_x = 0;
-    dhtmlXTooltip.config.delta_y = 0;
+    dhtmlXTooltip.config.delta_x = 10;
+    dhtmlXTooltip.config.delta_y = 0;*/
     // quick info
     scheduler.templates.quick_info_title = function(start, end, event){
         return template.summary(event);
@@ -160,7 +191,7 @@ function loadCalendar() {
     scheduler.templates.quick_info_content = function(start, end, event){
         return template.details(event) +
             template.location(event) +
-            template.debug(event);
+            template.zoom(event);
     }
     // general style
     scheduler.templates.event_class=function(start,end,event){

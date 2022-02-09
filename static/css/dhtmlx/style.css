@@ -84,3 +84,18 @@
     z-index: 40;
     position: absolute;
 }
+
+.zoombutton{
+    float: right;
+    border-radius: 0;
+    cursor: pointer;
+    border: transparent;
+    background-color: transparent;
+    box-shadow: 0 3px 5px 0 rgb(0 0 0 / 10%);
+}
+.zoombutton > img{
+    max-height: 2rem;
+    cursor: pointer;
+}
+
+
