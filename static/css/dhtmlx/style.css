@@ -91,11 +91,16 @@
     cursor: pointer;
     border: transparent;
     background-color: transparent;
-    box-shadow: 0 3px 5px 0 rgb(0 0 0 / 10%);
+    box-shadow: 5px 5px 5px 1px rgb(0 0 0 / 20%);
 }
 .zoombutton > img{
-    max-height: 2rem;
+    height: 2.5rem;
+    width: auto;
     cursor: pointer;
 }
 
-
+.zoombutton:hover{
+    -moz-box-shadow: 0 0 10px #ccc;
+      -webkit-box-shadow: 0 0 10px #ccc;
+      box-shadow: 0 0 10px #ccc;
+}

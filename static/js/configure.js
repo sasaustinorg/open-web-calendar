@@ -47,11 +47,18 @@ function makeLink(url, html) {
 
 function getZoomLink(event){
     // console.log(event);
-    mySearchString = "sasaustin.zoom.us/my/trustees";
-    myURL = "https://sasaustin.zoom.us/my/trustees";
-    if(event.description.search(mySearchString) !== -1) { //returns -1 if no match is found.
-        event.url = myURL;
-        return myURL;
+    ed = event.description;
+    ed = ed.replace(/\"/g," ");
+    ed = ed.replace(/</g," ");
+    ed = ed.replace(/>/g," ");
+    if(ed.search("zoom.us") == -1)
+        return 0
+    const regex = /(([a-z]+:\/\/)?(([a-z0-9\-]+\.)+([a-z]{2}|aero|arpa|biz|com|coop|edu|gov|info|int|jobs|mil|museum|name|nato|net|org|pro|travel|local|internal))(:[0-9]{1,5})?(\/[a-z0-9_\-\.~]+)*(\/([a-z0-9_\-\.]*)(\?[a-z0-9+_\-\.%=&amp;]*)?)?(#[a-zA-Z0-9!$&'()*+.=-_~:@\/?]*)?)(\s+|$)/gi
+    if(ed.match(regex) !== null && ed.match(regex)[0].search("zoom.us") !== -1) { //returns null if no match is found. returns an array if results are found
+        if(ed.match(regex)[0].search("https://") == -1){
+            return "https://" + ed.match(regex)[0]; //return the first match for us with https
+        }
+        return ed.match(regex)[0]; //return the first match for us
     }
     else return 0;
     
@@ -87,7 +94,7 @@ var template = {
     "zoom": function(event) {
         zoomLink = getZoomLink(event);
         if(zoomLink !== 0){
-            return "<br><a href=\"" + zoomLink + "\"><button class=\"zoombutton\"><img src=\"img/zoom.png\"></button></a>";
+            return "<br><a href=\"" + zoomLink + "\"><button class=\"zoombutton\"><img src=\"img/zoom.svg\"></button></a>";
         }
         else return "";
         
@@ -169,6 +176,7 @@ function loadCalendar() {
     scheduler.templates.event_bar_text = function(start, end, event){
         return event.text;
     }
+    
     // tool tip
     // see https://docs.dhtmlx.com/scheduler/tooltips.html
 /*    scheduler.templates.tooltip_text = function(start, end, event) {
