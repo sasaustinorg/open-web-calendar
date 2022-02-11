@@ -94,7 +94,7 @@ var template = {
     "zoom": function(event) {
         zoomLink = getZoomLink(event);
         if(zoomLink !== 0){
-            return "<br><a href=\"" + zoomLink + "\"><button class=\"zoombutton\"><img src=\"img/zoom.svg\"></button></a>";
+            return "<br><a target=\"_blank\" href=\"" + zoomLink + "\"><button class=\"zoombutton\"><img src=\"img/zoom.svg\"></button></a>";
         }
         else return "";
         
