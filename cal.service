@@ -1,0 +1,13 @@
+[Unit]
+Description=SAS Board Calendar
+After=multi-user.target
+SourcePath=/home/$USER/open-web-calendar/
+[Service]
+Type=simple
+User=$USER
+Group=$USER
+WorkingDirectory=/home/$USER/open-web-calendar/
+Restart=always
+ExecStart=/home/$USER/open-web-calendar/app.py
+[Install]
+WantedBy=multi-user.target
